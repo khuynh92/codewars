@@ -1,21 +1,15 @@
 function formatWords(words) {
+  if (!Array.isArray(words)) return '';
 
-  if (Array.isArray(words) && words.includes('')) {
-    while (words.includes('')) {
-      index = words.indexOf('');
-      words.splice(index, 1);
-    }
-  }
+  words = words.filter(word => word);
 
-  if (!Array.isArray(words) || words.length === 0) {
-    return '';
+  if (words.length === 0) return '';
+
+  if (words.length === 1) {
+    return words[0];
   } else {
-    if (words.length === 1) {
-      return words[0];
-    } else {
-      let last = words[words.length - 1];
-      words.splice(words.length - 1, 1)
-      return words.join(', ') + ' and ' + last;
-    }
+    let last = words[words.length - 1];
+    words.splice(words.length - 1, 1);
+    return words.join(', ') + ' and ' + last;
   }
 }
